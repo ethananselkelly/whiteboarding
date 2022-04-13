@@ -1,38 +1,36 @@
-//checks for empty string
-if (title.trim() === '') {
-  return ''
-}
-
-title = title.toLowerCase().split(' ')
-console.log(title)
-if (minorWords) {
-  minorWords = minorWords.toLowerCase()
-}
-console.log(minorWords)
-//title = ['the', 'wind', 'in', 'the', 'willows']
-let newTitle = []
-title.forEach((word) => {
-  if (minorWords) {
-    if (title.indexOf(word) === 0) {
-      word = word.split('')
-      word[0] = word[0].toUpperCase()
-      word = word.join('')
-      newTitle.push(word)
-    } else if (minorWords.split(' ').includes(word)) {
-      newTitle.push(word)
-    } else {
-      word = word.split('')
-      word[0] = word[0].toUpperCase()
-      word = word.join('')
-      newTitle.push(word)
-    }
-  } else {
-    word = word.split('')
-    word[0] = word[0].toUpperCase()
-    word = word.join('')
-    newTitle.push(word)
+//verbose but works
+function titleCase(title, minorWords) {
+  if (title.trim() === '') {
+    return ''
   }
   
-})
-console.log(newTitle)
-return newTitle.join(' ')
+  title = title.toLowerCase().split(' ')
+  if (minorWords) {
+    minorWords = minorWords.toLowerCase()
+  }
+  let newTitle = []
+  for (let i=0; i<title.length; i++) {
+    if (minorWords) {
+      if (title.indexOf(title[i]) === 0) {
+        title[i] = title[i].split('')
+        title[i][0] = title[i][0].toUpperCase()
+        title[i] = title[i].join('')
+        newTitle.push(title[i])
+      } else if (minorWords.split(' ').includes(title[i])) {
+        newTitle.push(title[i])
+      } else {
+        title[i] = title[i].split('')
+        title[i][0] = title[i][0].toUpperCase()
+        title[i] = title[i].join('')
+        newTitle.push(title[i])
+      }
+    } else {
+      title[i] = title[i].split('')
+      title[i][0] = title[i][0].toUpperCase()
+      title[i] = title[i].join('')
+      newTitle.push(title[i])
+    }
+  }
+  
+  return newTitle.join(' ')
+}
